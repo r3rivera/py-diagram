@@ -1,18 +1,34 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 
 app = Flask(__name__)
 
 
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template("error404.html")
+
 
 @app.route('/')
 def index():
     '''
-    Main page 
+    index page 
     '''
-    
-    name_var = "Some Variable1"
-    return render_template("home.html", name_var=name_var, sum=list(name_var) )
+    return render_template("index.html", welcome_message='Welcome to my page')
+
+
+@app.route('/signup')
+def sign_up():
+    '''
+    Sign up Page
+    '''
+    return render_template("signup.html", signup_message='Please provide your details')
+
+@app.route('/home')
+def signup_submit():
+    first_name = request.args.get('firstname')
+    last_name = request.args.get('lastname')
+    return render_template("home.html", user = f"{last_name}, {first_name}")
 
 
 @app.route('/health')

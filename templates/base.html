@@ -14,10 +14,11 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
     </head>
     <bod>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a href="{{ url_for('user', user_id='Ryan') }}" class="navbar-brand">Realtor</a>
+        <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+            <a href="{{ url_for('index') }}" class="navbar-brand">Home Page</a>
         </nav>
         {% block  content%}
+        
         {% endblock  %}
     </body>
 </html>
