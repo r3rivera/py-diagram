@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content%}
+<div class="jumbotron">
+    <h1>{{signup_message}}</h1>
+    <form method="POST">
+        {{infoForm.hidden_tag()}}
+        <div>
+            {{infoForm.breed.label}}{{infoForm.breed}}
+        </div>
+        <div>
+            {{infoForm.neutered.label}}{{infoForm.neutered}}
+        </div>
+        <div>
+            {{infoForm.mood.label}}{{infoForm.mood}}
+        </div>
+        <div>
+            {{infoForm.food_choices.label}}{{infoForm.food_choices}}
+        </div>
+        <div>
+            {{infoForm.submitBtn}}
+        </div>
+    </form>
+</div>
+{%endblock%}
