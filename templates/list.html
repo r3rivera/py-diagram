@@ -2,13 +2,17 @@
 {% block content %}
     <div class="row">
         <div class="col-lg-12">
-            <h2>List of Puppies</h2>
-            <ul>
-                {% for pup in puppies %}
-                    <li>{{pup}}</li>
-                {% endfor %}
-            </ul>
-
+            {% if puppies|length == 0 %}
+                <h2>No Puppies Found</h2>
+                <span>Add puppy <a href={{url_for('add_pup')}}>here</a> </span>
+            {% else %}
+                <h2>List of Puppies</h2>
+                <ul>
+                    {% for pup in puppies %}
+                        <li><a href={{ url_for('del_pup', pup_id=pup.id) }}>{{pup.name}}</a></li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
         </div>
     </div>
 {% endblock%}

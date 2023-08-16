@@ -70,17 +70,16 @@ def list_pup():
     return render_template('list.html', puppies=puppies)
 
 
-@app.route('/delete', methods=['GET','POST'])
-def del_pup():
-    form = DelForm()
-    if form.validate_on_submit():
-        id = form.id.data
-        pup = Puppy.query.get(id)
-        DB.session.delete(pup)
-        DB.session.commit()
+@app.route('/delete/<int:pup_id>', methods=['GET','POST'])
+def del_pup(pup_id):
+    #form = DelForm()
+    #if form.validate_on_submit():
+    pup = Puppy.query.get(pup_id)
+    DB.session.delete(pup)
+    DB.session.commit()
 
-        return redirect(url_for('list_pup'))
-    return render_template('delete.html', form=form)
+    return redirect(url_for('list_pup'))
+
 
 
 if __name__ == '__main__':
