@@ -1,4 +1,9 @@
 {% extends 'base.html' %}
-{% block content%}
-<h3>Welcome to this page {{user}}
-{%endblock%}
+{% block content %}
+    <div class="jumbotron">
+        <p>{{welcome_message}}</p>
+        <br>
+        <br>
+        <a href="{{url_for('list_pup')}}">Go Add Some Puppy</a>
+    </div>
+{% endblock%}

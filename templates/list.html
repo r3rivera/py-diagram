@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="row">
+        <div class="col-lg-12">
+            <h2>List of Puppies</h2>
+            <ul>
+                {% for pup in puppies %}
+                    <li>{{pup}}</li>
+                {% endfor %}
+            </ul>
+
+        </div>
+    </div>
+{% endblock%}
