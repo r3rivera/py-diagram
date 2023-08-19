@@ -4,12 +4,12 @@
         <div class="col-lg-12">
             {% if puppies|length == 0 %}
                 <h2>No Puppies Found</h2>
-                <span>Add puppy <a href={{url_for('add_pup')}}>here</a> </span>
+                <span>Add puppy <a href={{url_for('puppies.add_pup')}}>here</a> </span>
             {% else %}
                 <h2>List of Puppies</h2>
                 <ul>
                     {% for pup in puppies %}
-                        <li><a href={{ url_for('del_pup', pup_id=pup.id) }}>{{pup.name}}</a></li>
+                        <li><a href={{ url_for('puppies.delete', pup_id=pup.id) }}>{{pup.name}}</a></li>
                     {% endfor %}
                 </ul>
             {% endif %}
