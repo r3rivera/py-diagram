@@ -1,10 +1,21 @@
 
-from myproject import DB
-
+from myproject import DB, Login_Mgr
+from flask_bcrypt import Bcrypt
+from flask_login import UserMixin
 
 #####################################
 ###### SQL TABLE ORM ################
 #####################################
+
+b_crypt = Bcrypt()
+
+
+### Use to populate the current_user object
+@Login_Mgr.user_loader
+def load_user(user_id):
+    return UserCredential.query.get(user_id)
+
+
 
 class Puppy(DB.Model):
     
@@ -35,6 +46,22 @@ class Owner(DB.Model):
     def __repr__(self):
         return f"Owner name: {self.name}"
 
-#####################################
-####### VIEW FUNCTIONS - HTML FORMS #
-#####################################
+
+class UserCredential(DB.Model, UserMixin):
+    __tablename__ = 'credentials'
+    
+    id = DB.Column(DB.Integer, primary_key=True)
+    email = DB.Column(DB.String(64), unique=True, index=True)
+    username = DB.Column(DB.String(64), unique=True, index=True)
+    password_hash = DB.Column(DB.String(128))
+    
+    def __init__(self, email, username, password):
+        self.email = email 
+        self.username = username
+        self.password_hash = b_crypt.generate_password_hash(password)
+        
+    def is_valid_password(self, password):
+        return b_crypt.check_password_hash(self.password_hash, password)    
+        
+    def __repr__(self):
+        return self.email

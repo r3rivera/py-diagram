@@ -1,0 +1,14 @@
+{% extends 'pub_base.html' %}
+{% block content %}
+    <div class="jumbotron">
+        <p>Login</p>
+        <form class="" method="POST">
+            {{form.hidden_tag()}}
+            {{form.email.label}}{{form.email()}}
+            {{form.password.label}}{{form.password()}}
+            {{form.submit()}}
+        </form>
+        <br>
+        <br>
+    </div>
+{% endblock%}

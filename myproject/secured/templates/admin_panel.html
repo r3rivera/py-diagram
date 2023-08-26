@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="jumbotron">
+        <p>{{header_msg}}</p>
+        <br>
+        <br>
+        <a href="{{url_for('puppies.list')}}">Go Add Some Puppy</a>
+    </div>
+{% endblock%}
