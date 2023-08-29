@@ -20,13 +20,11 @@ def user_login():
             login_user(user)
             flash('Login is successful!')
             
-            next = request.args.get('next')
+            next_url = request.args.get('next')
             
-            if next is None or not next[0]=='/':
-                next =  url_for('secure.admin_panel')
-            return redirect(next)
-        
-    
+            if next_url is None or not next_url[0]=='/':
+                next_url =  url_for('secure.admin_panel')
+            return redirect(next_url)
     return render_template('login.html', form=login_form)
 
 
